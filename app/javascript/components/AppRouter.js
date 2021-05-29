@@ -34,7 +34,7 @@ const AppRouter = () => {
             <Router>
                 <AppNav />
                 <div
-                    className="container-fluid d-flex align-stretch flex-column px-md-8"
+                    className="container-fluid d-flex align-stretch flex-column px-lg-8"
                     style={{ minHeight: 'calc(100vh - 56px)' }}
                 >
                     {isLoading ? (
