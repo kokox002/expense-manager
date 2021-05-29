@@ -7,7 +7,7 @@ class Expense < ApplicationRecord
           title: title,
           description: description,
           value: value,
-          date: date,
+          date: date.to_date,
           categoryId: category.id
       }
   end

@@ -6,6 +6,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import AppNav from './AppNav'
 import Home from './Home'
 import Reports from './Reports'
+import Expenses from './Expenses'
 
 const AppRouter = () => {
     const { token, setCategories } = useContext(ExpenseContext)
@@ -48,6 +49,7 @@ const AppRouter = () => {
                         </div>
                     ) : (
                         <Switch>
+                            <Route path="/categories/:id" component={Expenses} />
                             <Route path="/reports" component={Reports} />
                             <Route path="/" component={Home} />
                         </Switch>
