@@ -3,6 +3,7 @@ import { ExpenseContext } from './App'
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import { currencyFormat } from './utils'
+import ReportsHorizontalChart from './ReportsHorizontalChart'
 
 const Reports = () => {
     const { categories } = useContext(ExpenseContext)
@@ -65,6 +66,12 @@ const Reports = () => {
     return (
         <div className="py-3">
             <h1 className="mb-4">Top expenses in the last 30 days</h1>
+            <div className="mb-4">
+                <ReportsHorizontalChart
+                    categories={categoriesTotalExpenseInAMonth}
+                    total={totalExpenseInAMonth}
+                />
+            </div>
             {categoriesInAMonthReportRows}
         </div>
     )
