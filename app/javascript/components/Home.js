@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import CategoryModal from './CategoryModal'
 import ConfirmationModal from './ConfirmationModal'
 import { Edit, Trash } from 'react-feather'
+import { currencyFormat } from './utils'
 
 const Home = () => {
     const { token, categories, deleteCategory } = useContext(ExpenseContext)
@@ -94,14 +95,26 @@ const Home = () => {
                                   <Trash size={18} />
                               </a>
                           </Card.Body>
-                          <Card.Footer>
-                              {c.expenses.length} expense
-                              {c.expenses.length > 1 ? 's' : ''} listed
+                          <Card.Footer className="d-flex">
+                              <div className="mr-auto">
+                                  {c.expenses.length} expense
+                                  {c.expenses.length > 1 ? 's' : ''} listed
+                              </div>
+                              <div>
+                                  Php{' '}
+                                  {currencyFormat(
+                                      c.expenses.reduce(
+                                          (acc, curr) =>
+                                              acc + Number(curr.value),
+                                          0
+                                      )
+                                  )}
+                              </div>
                           </Card.Footer>
                       </Card>
                   </div>
               ))
-            : "There are currently no categories."
+            : 'There are currently no categories.'
 
     return (
         <div className="py-3">
