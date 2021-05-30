@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { ExpenseContext } from './App'
+import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import { currencyFormat } from './utils'
 
@@ -37,16 +38,27 @@ const Reports = () => {
             ? [...categoriesTotalExpenseInAMonth]
                   .sort((a, b) => b.total - a.total)
                   .map((c) => (
-                      <Card body key={c.id} className="mb-3">
-                          <Card.Title>{c.title}</Card.Title>
-                          <Card.Text>
-                              Php {currencyFormat(c.total)} (
-                              {((c.total / totalExpenseInAMonth) * 100).toFixed(
-                                  2
-                              )}
-                              %)
-                          </Card.Text>
-                      </Card>
+                      <div key={c.id} className="mb-3">
+                          <Link
+                              to={{
+                                  pathname: `/categories/${c.id}`,
+                                  from: '/reports',
+                              }}
+                              className="btn-link-black"
+                          >
+                              <Card body>
+                                  <Card.Title>{c.title}</Card.Title>
+                                  <Card.Text>
+                                      Php {currencyFormat(c.total)} (
+                                      {(
+                                          (c.total / totalExpenseInAMonth) *
+                                          100
+                                      ).toFixed(2)}
+                                      %)
+                                  </Card.Text>
+                              </Card>
+                          </Link>
+                      </div>
                   ))
             : 'No expenses in the last 30 days.'
 

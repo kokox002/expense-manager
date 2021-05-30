@@ -1,16 +1,17 @@
 import React, { Fragment, useContext, useState } from 'react'
 import axios from 'axios'
 import { ExpenseContext } from './App'
-import { useParams, Link } from 'react-router-dom'
+import { useLocation, useParams, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import ExpenseModal from './ExpenseModal'
 import ConfirmationModal from './ConfirmationModal'
-import { Edit, Trash } from 'react-feather'
+import { ChevronLeft, Edit, Trash } from 'react-feather'
 import { currencyFormat } from './utils'
 
 const Expenses = () => {
     const { id } = useParams()
+    const location = useLocation()
     const { token, categories, deleteExpense } = useContext(ExpenseContext)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
@@ -106,7 +107,16 @@ const Expenses = () => {
             {category && (
                 <div className="py-3">
                     <div className="mb-2">
-                        <Link to="/home">Back</Link>
+                        <Link
+                            to={
+                                location && location.from
+                                    ? location.from
+                                    : '/home'
+                            }
+                        >
+                            <ChevronLeft className="mb-1 mr-1" size={20} />
+                            Back
+                        </Link>
                     </div>
                     <div className="d-flex flex-wrap mb-4">
                         <h1 className="mr-auto">{category.title}</h1>
