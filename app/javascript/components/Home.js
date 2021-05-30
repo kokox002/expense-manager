@@ -101,7 +101,7 @@ const Home = () => {
                       </Card>
                   </div>
               ))
-            : "There are currently no categories.'"
+            : "There are currently no categories."
 
     return (
         <div className="py-3">

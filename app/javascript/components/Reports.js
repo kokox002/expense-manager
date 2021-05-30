@@ -32,17 +32,23 @@ const Reports = () => {
         (acc, curr) => acc + curr.total,
         0
     )
-    const categoriesInAMonthReportRows = [...categoriesTotalExpenseInAMonth]
-        .sort((a, b) => b.total - a.total)
-        .map((c) => (
-            <Card body key={c.id} className="mb-3">
-                <Card.Title>{c.title}</Card.Title>
-                <Card.Text>
-                    Php {currencyFormat(c.total)} (
-                    {((c.total / totalExpenseInAMonth) * 100).toFixed(2)}%)
-                </Card.Text>
-            </Card>
-        ))
+    const categoriesInAMonthReportRows =
+        categoriesWithAMonthOldExpenses.length > 0
+            ? [...categoriesTotalExpenseInAMonth]
+                  .sort((a, b) => b.total - a.total)
+                  .map((c) => (
+                      <Card body key={c.id} className="mb-3">
+                          <Card.Title>{c.title}</Card.Title>
+                          <Card.Text>
+                              Php {currencyFormat(c.total)} (
+                              {((c.total / totalExpenseInAMonth) * 100).toFixed(
+                                  2
+                              )}
+                              %)
+                          </Card.Text>
+                      </Card>
+                  ))
+            : 'No expenses in the last 30 days.'
 
     return (
         <div className="py-3">
