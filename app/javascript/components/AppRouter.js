@@ -9,7 +9,7 @@ import Reports from './Reports'
 import Expenses from './Expenses'
 
 const AppRouter = () => {
-    const { token, setCategories } = useContext(ExpenseContext)
+    const { setCategories } = useContext(ExpenseContext)
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
@@ -17,10 +17,7 @@ const AppRouter = () => {
             setIsLoading(true)
             const result = await axios({
                 method: 'get',
-                url: '/v1/categories',
-                data: {
-                    auth: token,
-                },
+                url: '/v1/categories'
             })
 
             setCategories(result.data.categories)

@@ -5,11 +5,30 @@
     }
 }
 
-.btn-link-black {
-    color: #212529;
-    text-decoration: none !important;
+.btn {
+    outline: none !important;
+    box-shadow: none !important;
+}
 
-    :hover {
-        color: #212529;
-    }
+.btn-link-black {
+    color: #212529 !important;
+    text-decoration: none !important;
+}
+
+.block-link {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.block-link-link {
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    z-index: 2;
 }

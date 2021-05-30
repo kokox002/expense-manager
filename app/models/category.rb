@@ -1,5 +1,7 @@
 class Category < ApplicationRecord
-    has_many :expenses
+    has_many :expenses, dependent: :delete_all
+    
+    validates :title, presence: true
 
     def index_hash
         {

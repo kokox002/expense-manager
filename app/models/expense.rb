@@ -1,6 +1,10 @@
 class Expense < ApplicationRecord
   belongs_to :category
 
+  validates :title, presence: true
+  validates :date, presence: true
+  validates :value, presence: true
+
   def index_hash
       {
           id: id,
