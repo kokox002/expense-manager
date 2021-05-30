@@ -30,7 +30,9 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 categories: state.categories.map((c) =>
-                    c.id === payload.categoryId ? c.expenses.concat(payload) : c
+                    c.id === payload.categoryId
+                        ? { ...c, expenses: c.expenses.concat(payload) }
+                        : c
                 ),
             }
         case actions.EDIT_CATEGORY:
@@ -45,23 +47,31 @@ const reducer = (state, action) => {
                 ...state,
                 categories: state.categories.map((c) =>
                     c.id === payload.categoryId
-                        ? c.expenses.map((e) =>
-                              e.id === payload.id ? payload : e
-                          )
+                        ? {
+                              ...c,
+                              expenses: c.expenses.map((e) =>
+                                  e.id === payload.id ? payload : e
+                              ),
+                          }
                         : c
                 ),
             }
         case actions.DELETE_CATEGORY:
             return {
                 ...state,
-                categories: state.filter.map((c) => c.id !== payload.id),
+                categories: state.categories.filter((c) => c.id !== payload.id),
             }
         case actions.DELETE_EXPENSE:
             return {
                 ...state,
                 categories: state.categories.map((c) =>
                     c.id === payload.categoryId
-                        ? c.expenses.filter((e) => e.id !== payload.id)
+                        ? {
+                              ...c,
+                              expenses: c.expenses.filter(
+                                  (e) => e.id !== payload.id
+                              ),
+                          }
                         : c
                 ),
             }
@@ -90,7 +100,7 @@ const ContextProvider = ({ children }) => {
             dispatch({ type: actions.EDIT_EXPENSE, payload }),
         deleteCategory: (payload) =>
             dispatch({ type: actions.DELETE_CATEGORY, payload }),
-        deleteExpense: () =>
+        deleteExpense: (payload) =>
             dispatch({ type: actions.DELETE_EXPENSE, payload }),
     }
 
