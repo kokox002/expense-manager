@@ -4,10 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { NavHashLink } from 'react-router-hash-link'
 
 const AppNav = () => (
-    <Navbar
-        expand="lg"
-        sticky="top"
-    >
+    <Navbar expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
